@@ -77,10 +77,10 @@ public class QuestGenerator {
             kingdoms.remove(kingdom);
 
             for (Road road : roads) {
-                if (road.getFrom().getId() == kingdom.getId())
-                    kingdoms.remove(road.getTo());
-                else if (road.getTo().getId() == kingdom.getId())
-                    kingdoms.remove(road.getFrom());
+                if (road.getK1().getId() == kingdom.getId())
+                    kingdoms.remove(road.getK2());
+                else if (road.getK2().getId() == kingdom.getId())
+                    kingdoms.remove(road.getK1());
             }
 
             for (Kingdom kd : new ArrayList<>(kingdoms)) {
@@ -112,7 +112,7 @@ public class QuestGenerator {
         int count = 0;
 
         for (Road road : this.roads) {
-            if (road.getFrom().getId() == kingdom.getId() || road.getTo().getId() == kingdom.getId())
+            if (road.getK1().getId() == kingdom.getId() || road.getK2().getId() == kingdom.getId())
                 count++;
         }
 
@@ -139,7 +139,7 @@ public class QuestGenerator {
 
             for (Road road : roads) {
                 writer.newLine();
-                writer.write(road.getFrom().getId() + " " + road.getTo().getId() + " " + road.getCost());
+                writer.write(road.getK1().getId() + " " + road.getK2().getId() + " " + road.getCost());
             }
 
             writer.close();

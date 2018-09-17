@@ -4,10 +4,7 @@ import com.sun.istack.internal.NotNull;
 import me.fadishawki.kingdomconquer.controller.QuestLoader;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /*
  *
@@ -105,15 +102,17 @@ public class Quest {
             stop("There is no starting Kingdom assigned.");
         }
 
-        if (road.getFrom().getId() != settledIn.getId()) {
+        if (road.getK1().getId() != settledIn.getId() && road.getK2().getId() != settledIn.getId()) {
             stop("This road is not connected to Kingdom #" + settledIn.getId() + "!");
             return;
         }
 
-        System.out.println("[TRAVEL LOG] #" + road.getFrom().getId() + " -> #" + road.getTo().getId() + " (Cost: " + road.getCost() + ")");
+        Kingdom to = road.getK1().getId() == settledIn.getId() ? road.getK1() : road.getK2();
 
-        this.settledIn = road.getTo();
-        this.cost += road.getCost() + road.getTo().getCost();
+        System.out.println("[TRAVEL LOG] #" + settledIn.getId() + " -> #" + to.getId() + " (Cost: " + road.getCost() + ")");
+
+        this.settledIn = to;
+        this.cost += road.getCost() + to.getCost();
 
         this.settledIn.setConquered(this);
         for (Kingdom adjacent : getAdjacentKingdoms(this.settledIn)) {
@@ -129,14 +128,14 @@ public class Quest {
         return true;
     }
 
-    public List<Kingdom> getAdjacentKingdoms(Kingdom kingdom) {
-        List<Kingdom> list = new ArrayList<>();
+    public Set<Kingdom> getAdjacentKingdoms(Kingdom kingdom) {
+        Set<Kingdom> list = new HashSet<>();
 
         for (Road road : roads) {
-            if (road.getFrom().getId() == kingdom.getId())
-                list.add(road.getTo());
-            else if (road.getTo().getId() == kingdom.getId())
-                list.add(road.getFrom());
+            if (road.getK1().getId() == kingdom.getId())
+                list.add(road.getK2());
+            else if (road.getK2().getId() == kingdom.getId())
+                list.add(road.getK1());
         }
 
         return list;

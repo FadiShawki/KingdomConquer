@@ -10,39 +10,39 @@ package me.fadishawki.kingdomconquer.algorithm;
  *                   |                                      |
  *                o--o                                      o
  *
- * Welcome to Kingdom Conquer,
+ * Welcome k2 Kingdom Conquer,
  *
- * In this algorithm challenge you will need to conquer all kingdoms by
+ * In this algorithm challenge you will need k2 conquer all kingdoms by
  * creating an efficient algorithm that generates the most cost-effective
- * route to conquer all kingdoms.
+ * route k2 conquer all kingdoms.
  *
  * Explanation:
  * - You will start at a kingdom.
- * - Entering a new kingdom, or travelling a road to a new kingdom will cost gold.
+ * - Entering a new kingdom, or travelling a road k2 a new kingdom will cost gold.
  * - When a kingdom is conquered all its adjacent kingdoms will also be conquered.
- * - When all kingdoms are conquered you will return to the starting kingdom.
+ * - When all kingdoms are conquered you will return k2 the starting kingdom.
  *
  * @author Fadi Shawki - 2018
  */
 public class Road {
 
-    private final Kingdom from;
-    private final Kingdom to;
+    private final Kingdom k1;
+    private final Kingdom k2;
 
     private final int cost;
 
-    public Road(Kingdom from, Kingdom to, int cost) {
-        this.from = from;
-        this.to = to;
+    public Road(Kingdom k1, Kingdom k2, int cost) {
+        this.k1 = k1;
+        this.k2 = k2;
         this.cost = cost;
     }
 
-    public Kingdom getFrom() {
-        return from;
+    public Kingdom getK1() {
+        return k1;
     }
 
-    public Kingdom getTo() {
-        return to;
+    public Kingdom getK2() {
+        return k2;
     }
 
     public int getCost() {
